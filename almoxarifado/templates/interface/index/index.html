@@ -1,0 +1,68 @@
+{% extends 'interface/index/base.html' %}
+
+{% block title %}
+
+<div class="mx-auto text-center mt-5 mb-5">
+    <h5>Dashbord</h5>
+    <p>Quickly build an effective pricing table for your potential customers
+        with this Bootstrap example. It’s built with default Bootstrap components and utilities with little
+        customization.</p>
+</div>
+
+{% endblock %}
+
+{% block main %}
+
+<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Itens em estoque</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">{{ produtos_hoje }}<small class="text-body-secondary fw-light"></small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>{{ data_atual|date:"D" }}</li>
+                    <li>{{ data_atual|date:"M" }}</li>
+                    <li>{{ data_atual|date:"Y" }}</li>
+                </ul>
+                <a href="{% url 'estoque' %}" class="w-100 btn btn-lg btn-outline-primary">Verifique o estoque</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Valor gasto no dia</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">R$ {{ y }}<small class="text-body-secondary fw-light"></small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>{{ data_atual|date:"D" }}</li>
+                    <li>{{ data_atual|date:"M" }}</li>
+                    <li>{{ data_atual|date:"Y" }}</li>
+                </ul>
+                <a href="{% url 'entrada' %}" class="w-100 btn btn-lg btn-outline-primary">Verifique as entradas</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Valor gasto no mês</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">R$ {{ w }}<small class="text-body-secondary fw-light"></small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>{{ data_atual|date:"D" }}</li>
+                    <li>{{ data_atual|date:"M" }}</li>
+                    <li>{{ data_atual|date:"Y" }}</li>
+                </ul>
+                <a href="{% url 'entrada' %}" class="w-100 btn btn-lg btn-outline-primary">Verifique as entradas</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

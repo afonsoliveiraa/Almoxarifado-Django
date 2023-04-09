@@ -1,0 +1,57 @@
+{% extends 'interface/index/base.html' %}
+
+{% block title %}
+
+<div class="mx-auto text-center mt-5 mb-5">
+    <h5>Estoque</h5>
+    <p>Quickly build an effective</p>
+</div>
+
+{% endblock %}
+
+{% block main %}
+
+<div class="card">
+    <div class="card-header">
+        Featured
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-4">
+                <form action="{% url 'estoque_day' %}" method="post">
+                    {% csrf_token %}
+                    <input type="date" name="data" class=" form-control">
+                    <button class="btn btn-outline-success float-end mt-2">Pesquisar</button>
+
+                </form>
+            </div>
+        </div>
+        {% if produtos %}
+        <p class="mt-2">Estoque na data: {{ data }}</p>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Unidade de Medida</th>
+                <th scope="col">Saldo</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for produto in produtos %}
+            <tr>
+                <th scope="row">{{ produto.id }}</th>
+                <td>{{ produto.name }}</td>
+                <td>{{ produto.unit }}</td>
+                <td>{{ produto.estoque }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="mt-2">Sem dados na data {{ data }}</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

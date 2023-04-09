@@ -1,0 +1,33 @@
+{% extends 'interface/index/base.html' %}
+
+{% block title %}
+
+<div class="mx-auto text-center mt-5 mb-5">
+    <h5>Produtos</h5>
+    <p>Quickly build an effective pricing table for your potential customers
+        with this Bootstrap example. It’s built with default Bootstrap components and utilities with little
+        customization.</p>
+</div>
+
+{% endblock %}
+
+{% block main %}
+
+<div class="card">
+    <div class="card-header">
+        Featured
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-4">
+                <form action="{% url 'produto_create' %}" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button class="btn btn-outline-success mt-4 float-end">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'interface/index/base.html' %}
+
+{% block title %}
+
+<div class="mx-auto text-center mt-5 mb-5">
+    <h5>Entrada {{ entrada.number }}</h5>
+    <p>Quickly build an effective pricing</p>
+</div>
+
+{% endblock %}
+
+{% block main %}
+
+<div class="card">
+    <div class="card-header">
+        Featured
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-4">
+                <form action="{% url 'entrada_update' entrada.id %}" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button class="btn btn-outline-success mt-4 float-end">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-5">
+    <div class="card-header">
+        Featured
+    </div>
+    <div class="card-body">
+        <div class="row mb-4">
+            <div class="col-4">
+                <form action="{% url 'item_create' entrada.id %}" method="post">
+                    {% csrf_token %}
+                    {{ item_form }}
+                    <button class="btn btn-outline-success mt-4 float-end">Salvar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <p class="float-end ">Total itens: {{ total_itens }}</p>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Unidade de Medida</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Preço Unitário</th>
+                        <th scope="col">Operações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in itens %}
+                    <tr>
+                        <th scope="row">{{ item.id }}</th>
+                        <td>{{ item.produto_entrada }}</td>
+                        <td>{{ item.produto_entrada.unit }}</td>
+                        <td>{{ item.amount_produto }}</td>
+                        <td>R$ {{ item.price_produto }}</td>
+                        <td>
+                            <a href="{% url 'item_delete' item.id %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
